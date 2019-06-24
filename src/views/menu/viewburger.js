@@ -1,53 +1,47 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { ScrollView, StyleSheet } from 'react-native';
-
-//Navigation
-import { useNavigation } from 'react-navigation-hooks'
+import { ScrollView, StyleSheet, StatusBar } from 'react-native';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import MenuCard from '../../components/MenuCard/index'
-import { Header, Body, Content } from 'native-base';
+import IngredientCard from '../../components/IngredientCard/index'
+import { Header, Body, Content, Button, Text, Icon } from 'native-base';
 import { Title, Divider } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { useNavigationParam } from 'react-navigation-hooks';
 
-export default Menu = () => {
+export default ViewBurger = () => {
 
-    const burgers = useSelector(state => state.burgers.burgers)
-    const dispatch = useDispatch()
+    const burger = useNavigationParam('burger')
 
     return (
         <ScrollView style={styles.root}>
             <Header style={styles.header}>
                 <Body style={styles.titleBody}>
-                    <MaterialCommunityIcons name="hamburger" color="#FE9000" size={50} />
-                    <Title style={styles.headerTitle}>Cardápio</Title>
+                    <MaterialCommunityIcons name="hamburger" color="white" size={50} />
+                    <Title style={styles.headerTitle}>{burger.name}</Title>
                 </Body>
             </Header>
             <Divider />
             <Content style={styles.contentStyle}>
-                <Title style={styles.titleText}>Lanches</Title>
-
+                <Title style={styles.titleText}>Ingredientes</Title>
                 {
-                    burgers.map((burger, i) => (
-
-                        <MenuCard burger={burger} key={i} />
+                    burger.ingredients.map((ingredient, index) => (
+                        <IngredientCard ingredient={ingredient} key={index} />
                     ))
                 }
             </Content>
+            <Button iconLeft style={styles.addButton}>
+                <Icon name='add' />
+                <Text>Adicionar ao carrinho</Text>
+            </Button>
+            <StatusBar backgroundColor="#FE9000" barStyle='light-content'></StatusBar>
+
         </ScrollView>
     )
 
 }
 
-Menu.navigationOptions = () => ({
+ViewBurger.navigationOptions = () => ({
     title: "Cardápio",
-    tabBarIcon: ({ tintColor }) => (<MaterialCommunityIcons
-        name="hamburger"
-        size={23}
-        color={tintColor}
-        onPress={() => { }}
-    />)
 });
 
 const styles = StyleSheet.create({
@@ -55,19 +49,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#F4F6F9'
     },
     header: {
-        height: 54 + getStatusBarHeight(),
+        height: 84 + getStatusBarHeight(),
         marginBottom: 10,
-        backgroundColor: 'white',
+        backgroundColor: '#FE9000',
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
     },
     headerTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        color: '#FE9000',
+        color: 'white',
         marginLeft: 10
     },
     titleBody: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -79,5 +73,8 @@ const styles = StyleSheet.create({
     contentStyle: {
         backgroundColor: 'white',
         paddingTop: 20
+    },
+    addButton: {
+        backgroundColor: '#FE9000'
     }
 })

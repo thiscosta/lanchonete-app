@@ -29,7 +29,6 @@ export default Cart = () => {
 
                     {
                         burgers.map((burger, i) => (
-
                             <CartCard burger={burger} key={i} />
                         ))
                     }

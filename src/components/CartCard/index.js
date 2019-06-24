@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, Alert } from 'react-native'
 import { ListItem, Body, Text, Right, ActionSheet } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { parse, format } from 'date-fns'
 
 var BUTTONS = ["Remover item do pedido", "Editar item", "Cancelar",];
 var DESTRUCTIVE_INDEX = 0;
 var CANCEL_INDEX = 2;
 
-export default CartCard = ({ burger }) => {
+export default CartCard = ({ burger, showIcon }) => {
 
     _handleClickedAction = (action) => {
         switch (action) {

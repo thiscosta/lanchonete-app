@@ -4,13 +4,14 @@ import store from './src/store/store';
 
 import { View, StatusBar } from 'react-native'
 
-import { createAppContainer, createMaterialTopTabNavigator } from "react-navigation";
+import { createAppContainer, createMaterialTopTabNavigator, createStackNavigator } from "react-navigation";
 
 import Menu from './src/views/menu/index';
+import ViewBurger from './src/views/menu/viewburger';
 import History from './src/views/history/index';
 import Cart from './src/views/cart/index';
 
-const AppNavigator = createMaterialTopTabNavigator({
+const TabNavigator = createMaterialTopTabNavigator({
   Menu: { screen: Menu },
   History: { screen: History },
   Cart: { screen: Cart }
@@ -33,7 +34,18 @@ const AppNavigator = createMaterialTopTabNavigator({
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator)
+const MenuStack = createStackNavigator(
+  {
+    Home: TabNavigator,
+    ViewBurger: ViewBurger,
+  },
+  {
+    initialRouteName: 'Home',
+    headerMode: 'none',
+  }
+);
+
+const AppContainer = createAppContainer(MenuStack)
 
 export default App = () => {
   return (

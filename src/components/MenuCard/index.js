@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { ListItem, Left, Thumbnail, Body, Text, Right } from 'native-base';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from 'react-navigation-hooks'
 
 export default MenuCard = ({ burger }) => {
 
@@ -17,8 +18,10 @@ export default MenuCard = ({ burger }) => {
 
     })
 
+    const { navigate } = useNavigation()
+
     return (
-        <TouchableOpacity onPress={() => { }}>
+        <TouchableOpacity onPress={() => navigate('ViewBurger', { burger })}>
             <ListItem avatar key={burger._id}>
                 <Left>
                     <Thumbnail source={{ uri: 'https://cdn.pixabay.com/photo/2015/05/20/13/40/hamburger-775439_960_720.png' }} />
