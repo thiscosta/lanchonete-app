@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View, StatusBar } from 'react-native';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
@@ -16,10 +16,10 @@ export default Cart = () => {
 
     return (
         <Root>
-            <ScrollView>
+            <ScrollView style={styles.root}>
                 <Header style={styles.header}>
                     <Body style={styles.titleBody}>
-                        <MaterialCommunityIcons name="cart-outline" color="white" size={50} />
+                        <MaterialCommunityIcons name="cart-outline" color="#FE9000" size={50} />
                         <Title style={styles.headerTitle}>Carrinho</Title>
                     </Body>
                 </Header>
@@ -35,6 +35,7 @@ export default Cart = () => {
                     }
                 </Content>
             </ScrollView>
+            <StatusBar backgroundColor="white" barStyle='dark-content'></StatusBar>
         </Root>
     )
 
@@ -42,7 +43,6 @@ export default Cart = () => {
 
 Cart.navigationOptions = () => ({
     title: "Carrinho",
-
     tabBarIcon: ({ tintColor }) => (<MaterialCommunityIcons
         name="cart-outline"
         size={23}
@@ -52,13 +52,19 @@ Cart.navigationOptions = () => ({
 });
 
 const styles = StyleSheet.create({
+    root: {
+        backgroundColor: '#F4F6F9'
+    },
     header: {
         height: 54 + getStatusBarHeight(),
-        backgroundColor: '#FE9000'
+        marginBottom: 10,
+        backgroundColor: 'white',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
     headerTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        color: 'white',
+        color: '#FE9000',
         marginLeft: 10
     },
     titleBody: {
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     contentStyle: {
-        marginTop: 20
+        backgroundColor: 'white',
+        paddingTop: 20
     }
 })

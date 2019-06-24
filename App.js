@@ -2,6 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './src/store/store';
 
+import { View, StatusBar } from 'react-native'
+
 import { createAppContainer, createMaterialTopTabNavigator } from "react-navigation";
 
 import Menu from './src/views/menu/index';
@@ -16,10 +18,10 @@ const AppNavigator = createMaterialTopTabNavigator({
     initialRouteName: 'Menu',
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      activeTintColor: '#FE9000',
-      inactiveTintColor: 'grey',
-      style: { 
-        backgroundColor: '#f2f2f2', //FE9000
+      activeTintColor: '#f2f2f2',
+      inactiveTintColor: '#F4F6F9',
+      style: {
+        backgroundColor: '#FE9000', //FE9000
         borderTopColor: '#bfbfbf',
         borderTopWidth: 1
       },
@@ -36,11 +38,9 @@ const AppContainer = createAppContainer(AppNavigator)
 export default App = () => {
   return (
     <Provider store={store}>
-      <AppContainer>
-        <Menu />
-      </AppContainer>
+      <AppContainer />
+      <StatusBar barStyle='dark-content'></StatusBar>
     </Provider>
-
   );
 }
 

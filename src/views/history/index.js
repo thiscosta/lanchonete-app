@@ -14,10 +14,10 @@ export default History = () => {
     const dispatch = useDispatch()
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.root}>
             <Header style={styles.header}>
                 <Body style={styles.titleBody}>
-                    <Icon name="history" color="white" size={50} />
+                    <Icon name="history" color="#FE9000" size={50} />
                     <Title style={styles.headerTitle}>Histórico de pedidos</Title>
                 </Body>
             </Header>
@@ -48,13 +48,19 @@ History.navigationOptions = () => ({
 });
 
 const styles = StyleSheet.create({
+    root: {
+        backgroundColor: '#F4F6F9'
+    },
     header: {
         height: 54 + getStatusBarHeight(),
-        backgroundColor: '#FE9000'
+        marginBottom: 10,
+        backgroundColor: 'white',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
     headerTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        color: 'white',
+        color: '#FE9000',
         marginLeft: 10
     },
     titleBody: {
@@ -68,6 +74,7 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     contentStyle: {
-        marginTop: 20
+        backgroundColor: 'white',
+        paddingTop: 20
     }
 })
