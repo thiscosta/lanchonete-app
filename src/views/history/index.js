@@ -2,15 +2,13 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ScrollView, StyleSheet } from 'react-native';
 
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-import MenuCard from '../../components/MenuCard/index'
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import HistoryCard from '../../components/HistoryCard/index'
 import { Header, Body, Content } from 'native-base';
 import { Title, Divider } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-export default Menu = () => {
+export default History = () => {
 
     const burgers = useSelector(state => state.burgers.burgers)
     const dispatch = useDispatch()
@@ -19,18 +17,18 @@ export default Menu = () => {
         <ScrollView>
             <Header style={styles.header}>
                 <Body style={styles.titleBody}>
-                    <MaterialCommunityIcons name="hamburger" color="white" size={50} />
-                    <Title style={styles.headerTitle}>Cardápio</Title>
+                    <Icon name="history" color="white" size={50} />
+                    <Title style={styles.headerTitle}>Histórico de pedidos</Title>
                 </Body>
             </Header>
             <Divider />
             <Content style={styles.contentStyle}>
-                <Title style={styles.titleText}>Lanches</Title>
+                <Title style={styles.titleText}>Últimas compras</Title>
 
                 {
                     burgers.map((burger, i) => (
 
-                        <MenuCard burger={burger} key={i} />
+                        <HistoryCard burger={burger} key={i} />
                     ))
                 }
             </Content>
@@ -39,11 +37,10 @@ export default Menu = () => {
 
 }
 
-Menu.navigationOptions = () => ({
-    title: "Cardápio",
-
-    tabBarIcon: ({ tintColor }) => (<MaterialIcons
-        name="restaurant-menu"
+History.navigationOptions = () => ({
+    title: "Histórico",
+    tabBarIcon: ({ tintColor }) => (<Icon
+        name="history"
         size={23}
         color={tintColor}
         onPress={() => { }}

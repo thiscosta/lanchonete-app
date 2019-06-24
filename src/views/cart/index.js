@@ -2,48 +2,49 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ScrollView, StyleSheet } from 'react-native';
 
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import MenuCard from '../../components/MenuCard/index'
-import { Header, Body, Content } from 'native-base';
+import CartCard from '../../components/CartCard/index'
+import { Header, Body, Content, Root } from 'native-base';
 import { Title, Divider } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-export default Menu = () => {
+export default Cart = () => {
 
     const burgers = useSelector(state => state.burgers.burgers)
     const dispatch = useDispatch()
 
     return (
-        <ScrollView>
-            <Header style={styles.header}>
-                <Body style={styles.titleBody}>
-                    <MaterialCommunityIcons name="hamburger" color="white" size={50} />
-                    <Title style={styles.headerTitle}>Cardápio</Title>
-                </Body>
-            </Header>
-            <Divider />
-            <Content style={styles.contentStyle}>
-                <Title style={styles.titleText}>Lanches</Title>
+        <Root>
+            <ScrollView>
+                <Header style={styles.header}>
+                    <Body style={styles.titleBody}>
+                        <MaterialCommunityIcons name="cart-outline" color="white" size={50} />
+                        <Title style={styles.headerTitle}>Carrinho</Title>
+                    </Body>
+                </Header>
+                <Divider />
+                <Content style={styles.contentStyle}>
+                    <Title style={styles.titleText}>Itens no carrinho</Title>
 
-                {
-                    burgers.map((burger, i) => (
+                    {
+                        burgers.map((burger, i) => (
 
-                        <MenuCard burger={burger} key={i} />
-                    ))
-                }
-            </Content>
-        </ScrollView>
+                            <CartCard burger={burger} key={i} />
+                        ))
+                    }
+                </Content>
+            </ScrollView>
+        </Root>
     )
 
 }
 
-Menu.navigationOptions = () => ({
-    title: "Cardápio",
+Cart.navigationOptions = () => ({
+    title: "Carrinho",
 
-    tabBarIcon: ({ tintColor }) => (<MaterialIcons
-        name="restaurant-menu"
+    tabBarIcon: ({ tintColor }) => (<MaterialCommunityIcons
+        name="cart-outline"
         size={23}
         color={tintColor}
         onPress={() => { }}

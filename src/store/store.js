@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { all } from 'redux-saga/effects'
+
 //sagas
 import rootSaga from '../sagas/root-saga'
 
